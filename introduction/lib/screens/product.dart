@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:introduction/screens/listview.dart';
 
 class Product extends StatefulWidget {
   const Product({ Key? key }) : super(key: key);
@@ -55,7 +56,11 @@ class _ProductState extends State<Product> {
                     ),),
 
                     SizedBox(width: 10,),
-                     ElevatedButton(onPressed: (){}, child: Text("Show Details",style: TextStyle(color: Colors.white),),style: ElevatedButton.styleFrom(
+                     ElevatedButton(onPressed: (){
+                      
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ListviewLearning()));
+
+                     }, child: Text("Show Details",style: TextStyle(color: Colors.white),),style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 11, 104, 98),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
