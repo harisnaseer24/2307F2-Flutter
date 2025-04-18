@@ -8,7 +8,24 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  final GlobalKey<FormState> _signupKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signupKey = GlobalKey<FormState>(); // unique key
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  void RegisterUser() {
+    if (_signupKey.currentState!.validate()) {
+      print("User added succesfully");
+      print("email: ${emailController.text}");
+      print("username: ${userNameController.text}");
+      print("pass: ${passController.text}");
+      emailController.text = '';
+      userNameController.text = '';
+      passController.text = '';
+    } else {
+      print("Please insert valid details");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +60,13 @@ class _SignupState extends State<Signup> {
                           height: 20,
                         ),
                         TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return ("Username is required");
+                            }
+                            return null;
+                          },
+                          controller: userNameController,
                           decoration: InputDecoration(
                               labelText: "Username",
                               prefixIcon: Icon(Icons.person),
@@ -55,6 +79,18 @@ class _SignupState extends State<Signup> {
                           height: 20,
                         ),
                         TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return ("email is required");
+                            }
+                            if (!RegExp(
+                                    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                                .hasMatch(value)) {
+                              return ("email format is not valid");
+                            }
+                            return null;
+                          },
+                          controller: emailController,
                           decoration: InputDecoration(
                               labelText: "Email",
                               prefixIcon: Icon(Icons.mail),
@@ -67,6 +103,18 @@ class _SignupState extends State<Signup> {
                           height: 20,
                         ),
                         TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return ("password is required");
+                            }
+                            if (!RegExp(
+                                    r'^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{5,}$')
+                                .hasMatch(value)) {
+                              return ("password must have an uppercase,lowercase,digit, special character and have at least 5 characters");
+                            }
+                            return null;
+                          },
+                          controller: passController,
                           obscureText: true,
                           decoration: InputDecoration(
                               labelText: "Password",
@@ -81,10 +129,7 @@ class _SignupState extends State<Signup> {
                         ),
                         // submit button
                         ElevatedButton(
-                            onPressed: () {
-                              print("User added succesfully");
-                            },
-                            child: Text("Sign up"))
+                            onPressed: RegisterUser, child: Text("Sign up"))
 
                         // TextField()
                       ],
