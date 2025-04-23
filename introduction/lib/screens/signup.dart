@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:introduction/components/myDrawer.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -31,6 +32,7 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      drawer: MyDrawer(),
       body: Center(
           child: Container(
               height: 700,

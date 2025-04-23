@@ -9,7 +9,6 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   var user = {"name": "Haris Naseer", "age": 54, "city": "Karachi"};
-
   String name = "Haris";
 
   @override
