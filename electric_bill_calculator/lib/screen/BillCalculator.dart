@@ -1,3 +1,4 @@
+import 'package:electric_bill_calculator/screen/Result.dart';
 import 'package:flutter/material.dart';
 
 class BillCalculator extends StatefulWidget {
@@ -22,6 +23,9 @@ class _BillCalculatorState extends State<BillCalculator> {
       billAmount = 0,
       taxAmount = 0,
       finalBillAmount = 0;
+
+  // creating the bill details map to store the values
+  var billDetails = {};
   // function to calculate the bill
   void calculateBill() {
     if (myformkey.currentState!.validate()) {
@@ -31,9 +35,21 @@ class _BillCalculatorState extends State<BillCalculator> {
       taxPercent = double.parse(taxPercentController.text);
       billAmount = units * pricePerUnit; //4000
       taxAmount = (billAmount * (taxPercent / 100)); //(4000 * 10/100)
+
       setState(() {
         finalBillAmount = billAmount + taxAmount; //4000 +400= 4400
       });
+
+      billDetails = {
+        'units': units,
+        'pricePerUnit': pricePerUnit,
+        'taxPercent': taxPercent,
+        'billAmount': billAmount,
+        'taxAmount': taxAmount,
+        'finalBillAmount': finalBillAmount
+      };
+    Navigator.push(context,MaterialPageRoute(builder: (context)=>Result(billDetails)));
+
       print("Final Bill Amount : $finalBillAmount");
     } else {
       print("Please insert valid details");
@@ -44,7 +60,10 @@ class _BillCalculatorState extends State<BillCalculator> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("HN Energy Association",style:TextStyle(color: Colors.indigoAccent, fontSize: 25) ,),
+          title: Text(
+            "HN Energy Association",
+            style: TextStyle(color: Colors.indigoAccent, fontSize: 25),
+          ),
           centerTitle: true,
           actions: [],
         ),
@@ -56,7 +75,7 @@ class _BillCalculatorState extends State<BillCalculator> {
                 children: [
                   Text(
                     "Enter the details",
-                    style: TextStyle(fontSize: 222, color: Colors.indigoAccent),
+                    style: TextStyle(fontSize: 22, color: Colors.indigoAccent),
                   ),
                   SizedBox(
                     height: 20,
@@ -122,7 +141,7 @@ class _BillCalculatorState extends State<BillCalculator> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          color:Colors.indigoAccent),
+                          color: Colors.indigoAccent),
                       child: Center(
                           child: Text(
                         "Calculate Bill",
