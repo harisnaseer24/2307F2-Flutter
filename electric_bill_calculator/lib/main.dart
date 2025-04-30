@@ -1,4 +1,5 @@
 import 'package:electric_bill_calculator/screen/BillCalculator.dart';
+import 'package:electric_bill_calculator/screen/SongApp.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
      
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BillCalculator(),
+      home: SongApp(),
     );
   }
 }
