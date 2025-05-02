@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:introduction/screens/ApiProducts.dart';
 import 'package:introduction/screens/ListViewBuilder.dart';
 import 'package:introduction/screens/details.dart';
 import 'package:introduction/screens/extras.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         "/signup": (context)=>Signup(),
         "/product": (context)=>Product(),
         "/list": (context)=>ListviewLearning(),
-        "/listviewbuilder":(context)=> LearningListViewBuilder()
+        "/listviewbuilder":(context)=> LearningListViewBuilder(),
+        "/api":(context)=> ApiProducts(),
       },
     );
   }

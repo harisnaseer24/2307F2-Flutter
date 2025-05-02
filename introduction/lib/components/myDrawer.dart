@@ -47,12 +47,18 @@ const MyDrawer({ Key? key }) : super(key: key);
             title: Text("Products"),
             leading: Icon(Icons.shopify),
           ),
-           ListTile(
-            title: Text("Settings"),
-            leading: Icon(Icons.settings),
-            subtitle: Text("customize your experience"),
-            trailing: Icon(Icons.edit),
-          ),
+           GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context,"/api" );
+            },
+             child: ListTile(
+              title: Text("API Products"),
+              leading: Icon(Icons.settings),
+              subtitle: Text("customize your experience"),
+              trailing: Icon(Icons.edit),
+              
+                       ),
+           ),
            ListTile(
             title: Text("Logout"),
             leading: Icon(Icons.login),
