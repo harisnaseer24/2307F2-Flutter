@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "412666771363",
+    "project_id": "f2-bea85",
+    "storage_bucket": "f2-bea85.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412666771363:android:6f8f08b1727d555d218c16",
+        "android_client_info": {
+          "package_name": "com.example.firebase_crud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCll_y0My0f-Av58-7hd9vqjm0hL-MJbO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
