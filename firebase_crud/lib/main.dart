@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crud/screens/addproduct.dart';
 import 'package:firebase_crud/screens/products.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Products(),
+      routes: {
+        "/add":(context)=>Addproduct(),
+      },
     );
   }
 }
