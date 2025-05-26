@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 class ProductDetailScreen extends StatefulWidget {
   var productDetails={};
    ProductDetailScreen(this.productDetails,{super.key});

@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crud/screens/Login.dart';
 import 'package:firebase_crud/screens/addproduct.dart';
 import 'package:firebase_crud/screens/products.dart';
+import 'package:firebase_crud/screens/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
 
@@ -10,11 +13,16 @@ void main()async {
   await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn= prefs.getBool("isLoggedIn") ?? false;
+  bool isAdmin= prefs.getBool("isAdmin") ?? false;
+  runApp( MyApp(isAdmin: isAdmin, isLoggedIn:isLoggedIn));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+ final bool isLoggedIn, isAdmin ;
+
+   MyApp({super.key,required this.isAdmin,required this.isLoggedIn});
 
   // This widget is the root of your application.
   @override
@@ -26,9 +34,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Products(),
+      home: Signup(),
       routes: {
-        "/add":(context)=>Addproduct(),
+        "/products":(context)=> isLoggedIn ? Products(): Login(),
+        "/add":(context)=> (isLoggedIn && isAdmin) ? Addproduct(): Login(),
+        "/login":(context)=>Login(),
       },
     );
   }
