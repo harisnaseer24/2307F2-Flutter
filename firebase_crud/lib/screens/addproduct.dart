@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Addproduct extends StatefulWidget {
@@ -35,11 +36,35 @@ setState(() {
   imgUrl=base64img;
 });
 }
+var userDetails={};
+
+getUserDetails()async{
+   // super.initState();
+     final SharedPreferences prefs = await SharedPreferences.getInstance();
+String email = prefs.getString("email")?? "";
+String username = prefs.getString("username")?? "";
+String id = prefs.getString("id")?? "";
+
+setState((){
+  userDetails={
+    "email":email,
+    "username":username,
+    "id":id,
+  };
+});
+
+}
+
+void initState() {
+  
+getUserDetails();
+   
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text("Add new product"),
+        title: Text("Add new product as ${userDetails["email"]}"),
         actions: [
           IconButton(
             icon: Icon(Icons.add),

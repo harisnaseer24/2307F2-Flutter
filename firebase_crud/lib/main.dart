@@ -3,6 +3,7 @@ import 'package:firebase_crud/screens/Login.dart';
 import 'package:firebase_crud/screens/addproduct.dart';
 import 'package:firebase_crud/screens/products.dart';
 import 'package:firebase_crud/screens/signup.dart';
+import 'package:firebase_crud/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
@@ -34,9 +35,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Signup(),
+      home: SplashScreen(),
       routes: {
-        "/products":(context)=> isLoggedIn ? Products(): Login(),
+        "/signup":(context)=> Signup(),
+        "/products":(context)=>  Products(),
         "/add":(context)=> (isLoggedIn && isAdmin) ? Addproduct(): Login(),
         "/login":(context)=>Login(),
       },
